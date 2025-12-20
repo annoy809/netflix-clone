@@ -1,0 +1,224 @@
+/* DetailModal.css */
+
+.detail-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.detail-modal-container {
+  background-color: #141414;
+  color: white;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 10px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.detail-modal-poster {
+  position: relative;
+  width: 40%;
+  min-width: 300px;
+  overflow: hidden;
+}
+
+.detail-modal-poster img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px 0 0 10px;
+  object-fit: cover;
+}
+
+.detail-modal-play {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(255, 0, 0, 0.8);
+  border: none;
+  color: white;
+  font-size: 30px;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.detail-modal-play:hover {
+  background: rgba(255, 0, 0, 1);
+}
+
+.detail-modal-content {
+  padding: 20px;
+  width: 60%;
+  overflow-y: auto;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.detail-modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 28px;
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.detail-modal-tabs {
+  display: flex;
+  margin-top: 20px;
+  border-bottom: 1px solid #444;
+}
+
+.detail-modal-tab {
+  margin-right: 25px;
+  padding-bottom: 10px;
+  cursor: pointer;
+  color: #bbb;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.detail-modal-tab.active {
+  color: white;
+  border-bottom-color: red;
+}
+
+.detail-modal-episodes,
+.detail-modal-more,
+.detail-modal-details {
+  margin-top: 15px;
+  overflow-y: auto;
+  max-height: 60vh;
+}
+
+.detail-modal-episode {
+  display: flex;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.detail-modal-episode:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.detail-modal-episode img {
+  width: 150px;
+  height: 84px;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.detail-modal-more-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 15px;
+}
+
+.detail-modal-more-item img {
+  width: 100%;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.detail-modal-more-item p {
+  margin-top: 5px;
+  font-size: 0.9rem;
+  text-align: center;
+  color: #ddd;
+}
+
+.detail-modal-player {
+  position: fixed;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background-color: #000;
+  z-index: 1100;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -------- Responsive Styles -------- */
+@media screen and (max-width: 1024px) {
+  .detail-modal-container {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  .detail-modal-poster,
+  .detail-modal-content {
+    width: 100%;
+  }
+
+  .detail-modal-episode img {
+    width: 120px;
+    height: 70px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .detail-modal-container {
+    width: 98%;
+  }
+
+  .detail-modal-content {
+    padding: 15px;
+  }
+
+  .detail-modal-episode img {
+    width: 100px;
+    height: 56px;
+  }
+
+  .detail-modal-tabs {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .detail-modal-close {
+    font-size: 24px;
+  }
+
+  .detail-modal-play {
+    font-size: 24px;
+    padding: 8px 12px;
+  }
+
+  .detail-modal-episode img {
+    width: 80px;
+    height: 45px;
+  }
+
+  .detail-modal-more-item p {
+    font-size: 0.8rem;
+  }
+}

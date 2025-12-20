@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Video Player</title>
+  <meta name="referrer" content="no-referrer" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe id="video"></iframe>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const src = params.get("src");
+    if (src) {
+      document.getElementById("video").src = decodeURIComponent(src);
+    }
+  </script>
+</body>
+</html>

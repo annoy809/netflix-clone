@@ -1,0 +1,263 @@
+/* --- Navbar CSS for Navbar.jsx --- */
+
+/* Navbar container */
+.Navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 36px;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  background-color: rgba(0,0,0,0.4); /* subtle glass effect */
+  transition: background 0.3s ease;
+}
+
+/* Logo */
+.Navbar .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: 'Arial Black', sans-serif;
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+/* Navigation Links */
+.Nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+}
+
+.Nav-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.Nav-links ul li a:hover {
+  color: #e50914; /* Netflix-style hover */
+}
+
+/* Left Bar: Search, Notifications, Profile */
+.left-bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Icons */
+.icon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+  margin-right: 20px;
+}
+
+.icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Profile */
+.child-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.child-profile:hover .profile-img {
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  transform: scale(1.05);
+}
+
+/* Dropdown & Notification Dropdown */
+.dropdown,
+.notification-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: rgba(35, 35, 35, 0.98);
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  min-width: 160px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+/* Show dropdown on active */
+.child-profile:hover .dropdown,
+.icon.notification:hover + .notification-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown Items */
+.dropdown p,
+.notification-dropdown p {
+  margin: 6px 0;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.dropdown p:hover,
+.notification-dropdown p:hover {
+  color: #e50914;
+}
+
+.dropdown hr {
+  border: 0.5px solid #333;
+  margin: 8px 0;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .Nav-links ul {
+    gap: 12px;
+  }
+
+  .Navbar {
+    padding: 8px 16px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .profile-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dropdown,
+  .notification-dropdown {
+    right: -10px;
+    min-width: 140px;
+  }
+}
+/* =========================
+   Mobile & Small Screens
+   ========================= */
+
+/* Tablets & small laptops */
+@media (max-width: 1024px) {
+  .Nav-links ul {
+    gap: 16px;
+  }
+
+  .Navbar {
+    padding: 8px 24px;
+  }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .Navbar {
+    padding: 8px 14px;
+  }
+
+  /* Logo smaller */
+  .Navbar .logo {
+    font-size: 1.5rem;
+  }
+
+  /* Hide nav links (Netflix-style) */
+  .Nav-links {
+    display: none;
+  }
+
+  .left-bar {
+    gap: 12px;
+  }
+
+  .icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 10px;
+  }
+
+  .profile-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Dropdown positioning */
+  .dropdown,
+  .notification-dropdown {
+    top: 40px;
+    right: -8px;
+    min-width: 150px;
+    font-size: 14px;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 480px) {
+  .Navbar {
+    padding: 6px 10px;
+  }
+
+  .Navbar .logo {
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+  }
+
+  .left-bar {
+    gap: 8px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .profile-img {
+    width: 28px;
+    height: 28px;
+    border-width: 1.5px;
+  }
+
+  .dropdown,
+  .notification-dropdown {
+    min-width: 135px;
+    padding: 10px 12px;
+  }
+
+  .dropdown p,
+  .notification-dropdown p {
+    font-size: 13px;
+  }
+}
+

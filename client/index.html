@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- ✅ Preconnect to Google Fonts early -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- ✅ Preload Google Fonts stylesheet to eliminate render-blocking -->
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+  />
+
+  <!-- ✅ Load Google Fonts non-blocking -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+    rel="stylesheet"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+  </noscript>
+
+  <!-- ✅ Preload LCP image (correct way) -->
+  <link
+    rel="preload"
+    as="image"
+    href="https://image.tmdb.org/t/p/original/qwerty123.jpg"
+    type="image/jpeg"
+    fetchpriority="high"
+  />
+
+  <!-- ✅ Mobile viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ✅ Theme + Description -->
+  <meta name="theme-color" content="#000000" />
+  <meta
+    name="description"
+    content="Watch trending movies, anime, and TV shows online. Enjoy the best of Netflix-style entertainment with official trailers and more."
+  />
+
+  <title>Netflix Clone</title>
+
+  <!-- ✅ Basic CSP for security -->
+  <meta
+    http-equiv="Content-Security-Policy"
+  />
+</head>
+<body>
+  <div id="recaptcha-container"></div>
+  <div id="root"></div>
+
+  <!-- ✅ Render hero image early in body (not head) -->
+  <img
+    src="https://image.tmdb.org/t/p/original/qwerty123.jpg"
+    alt="Hero banner"
+    fetchpriority="high"
+    decoding="async"
+    style="display:none;" 
+    aria-hidden="true"
+  />
+
+  <!-- ✅ Main React app -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

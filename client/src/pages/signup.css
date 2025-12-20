@@ -1,0 +1,194 @@
+/* Base Container */
+.signin-container,
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 60px 20px;
+  color: #fff;
+}
+
+/* Box Styling */
+.signin-box,
+.signup-box {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+
+/* Logo Placeholder */
+.logo-placeholder {
+  font-size: 38px;
+  margin-bottom: 16px;
+  color: #e50914;
+}
+
+/* Heading */
+.signin-h2,
+.signup-h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Form Input */
+.signin-form input,
+.signup-form input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #333;
+  background: #111;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 15px;
+  outline: none;
+  transition: border 0.2s ease;
+}
+
+.signin-form input:focus,
+.signup-form input:focus {
+  border-color: #e50914;
+}
+
+/* Buttons */
+.continue-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background: #e50914;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.continue-btn:hover {
+  background: #f6121d;
+}
+
+/* Error / Info Messages */
+.error-message {
+  color: #ff4c4c;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.info-message {
+  color: #00d6a0;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+/* Links */
+.signup-link,
+.signin-link {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.signup-link a,
+.signin-link a {
+  color: #fff;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.forgot-link button {
+  margin-top: 12px;
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+/* Social Login Buttons */
+.social-login-buttons {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  border: 1px solid #444;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #222;
+  color: #eee;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.social-btn:hover {
+  background: #333;
+}
+
+.social-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Name fields in Signup */
+.name-fields {
+  display: flex;
+  gap: 12px;
+}
+
+.name-fields input {
+  flex: 1;
+}
+
+/* reCAPTCHA Hidden Container */
+#recaptcha-container {
+  margin-bottom: 8px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .signin-box,
+  .signup-box {
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+  .signin-h2,
+  .signup-h2 {
+    font-size: 22px;
+  }
+
+  .social-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+.auth-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  filter: brightness(0.4);
+}
+
+

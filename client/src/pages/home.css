@@ -1,0 +1,652 @@
+/* =========================
+   GENERAL RESET & FONTS
+   ========================= */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  color: #fff;
+}
+
+/* =========================
+   NAVBAR
+   ========================= */
+.Navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 36px;
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  background-color: rgba(0,0,0,0.4);
+  transition: background 0.3s ease;
+}
+
+.Navbar .logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.Nav-links ul {
+  list-style: none;
+  display: flex;
+  gap: 22px;
+}
+
+.Nav-links ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.Nav-links ul li a:hover {
+  color: #e50914;
+}
+
+.left-bar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.icon {
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.child-profile {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.profile-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.child-profile:hover .profile-img {
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+  transform: scale(1.05);
+}
+
+.dropdown,
+.notification-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: rgba(35, 35, 35, 0.98);
+  padding: 12px 18px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 15px;
+  min-width: 160px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.child-profile:hover .dropdown,
+.icon.notification:hover + .notification-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown p,
+.notification-dropdown p {
+  margin: 6px 0;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.dropdown p:hover,
+.notification-dropdown p:hover {
+  color: #e50914;
+}
+
+.dropdown hr {
+  border: 0.5px solid #333;
+  margin: 8px 0;
+}
+
+/* =========================
+   HERO BANNER
+   ========================= */
+.container {
+  padding-top: 58px;
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.banner-card {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right,
+    rgba(0,0,0,0.85) 25%,
+    rgba(0,0,0,0.4) 60%,
+    rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+
+.banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  color: #fff;
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', 'Impact', 'Arial Black', Arial, sans-serif;
+  font-size: 3rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 100;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 8px 32px rgba(0,0,0,0.8);
+  margin-bottom: 18px;
+  line-height: 1.1;
+}
+
+.banner-content .description,
+.text span {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-bottom: 20px;
+  color: #ccc;
+  text-shadow: 0 1px 4px #000;
+}
+
+.banner-content .buttons button,
+.text .play,
+.text .information {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid #555;
+  color: #fff;
+  padding: 10px 22px;
+  margin-right: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.banner-content .buttons button:hover,
+.text .play:hover,
+.text .information:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================
+   MOVIE LIST & CARDS
+   ========================= */
+.movie-list {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 30px 50px 20px 50px;
+  background: #111;
+  margin-bottom: 40px;
+}
+
+.movie-list::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-card {
+  flex: 0 0 180px;
+  background: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-card:hover {
+  transform: scale(1.08) translateY(-8px);
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+}
+
+.movie-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 70%, transparent 100%);
+  color: #fff;
+  padding: 16px 10px 10px 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.movie-card:hover .movie-info {
+  opacity: 1;
+}
+
+.movie-info h2 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.movie-info p {
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* =========================
+   ROW SECTION
+   ========================= */
+.movie-row {
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 8px;
+}
+
+/* =========================
+   MODAL
+   ========================= */
+.modal-bg {
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.85)),
+                    url('img/background_banner.jpg');
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-content {
+  padding: 40px 32px;
+  border-radius: 8px;
+  min-width: 320px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.modal-btn {
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.modal-btn:hover {
+  background: #b0060f;
+}
+
+/* =========================
+   RESPONSIVE MEDIA QUERIES
+   ========================= */
+@media (max-width: 1024px) {
+  .banner-card { height: 500px; }
+  .banner-content { padding: 32px; }
+  .banner-content .hero-title { font-size: 2.5rem; }
+  .movie-list { padding: 24px 30px 18px 30px; gap: 14px; }
+  .movie-card { flex: 0 0 160px; }
+  .movie-card img { height: 240px; }
+  .Navbar { padding: 8px 24px; }
+  .logo { font-size: 1.8rem; }
+  .icon { width: 24px; height: 24px; }
+}
+
+@media (max-width: 768px) {
+  .banner-card { height: 420px; }
+  .banner-content { padding: 24px; justify-content: flex-end; }
+  .banner-content .hero-title { font-size: 2rem; letter-spacing: 0.1em; }
+  .banner-content .description, .text span { font-size: 0.95rem; }
+  .banner-content .buttons button, .text .play, .text .information { padding: 10px 18px; font-size: 14px; }
+  .movie-list { padding: 20px 16px 16px 16px; gap: 12px; }
+  .movie-card { flex: 0 0 140px; }
+  .movie-card img { height: 210px; }
+  .movie-info h2 { font-size: 14px; }
+  .movie-info p { font-size: 12px; }
+  .Navbar { padding: 8px 16px; }
+  .logo { font-size: 1.6rem; }
+  .profile-img { width: 32px; height: 32px; }
+}
+
+@media (max-width: 480px) {
+  body { background: #000; }
+  .banner-card { height: 340px; border-radius: 0; }
+  .banner-content { padding: 16px; }
+  .banner-content .hero-title, .hero-title { font-size: 1.6rem; letter-spacing: 0.08em; }
+  .banner-content .description, .text span { font-size: 0.85rem; line-height: 1.4; }
+  .banner-content .buttons button, .text .play, .text .information { padding: 8px 14px; font-size: 13px; border-radius: 4px; }
+  .movie-list { padding: 16px 10px 12px 10px; gap: 10px; }
+  .movie-card { flex: 0 0 120px; }
+  .movie-card img { height: 180px; }
+  .movie-card:hover { transform: scale(1.03); }
+  .movie-info { padding: 10px 8px 8px 8px; }
+  .movie-info h2 { font-size: 13px; }
+  .movie-info p { font-size: 11px; }
+  .modal-content { padding: 24px 18px; min-width: 280px; }
+  .modal-close { font-size: 1.6rem; top: 8px; right: 12px; }
+  .modal-btn { padding: 8px 16px; font-size: 14px; }
+}
+@media (max-width: 1024px) {
+  .hello2 {
+    flex-direction: column;
+  }
+
+  .hello2 > div:first-child { /* Poster */
+    width: 100% !important;
+    height: 50vh !important;
+  }
+
+  .hello2 > div:last-child { /* Right content */
+    padding: 24px !important;
+    overflow-y: auto;
+    flex: none;
+    height: auto;
+  }
+
+  .hello2 img {
+    object-fit: cover;
+  }
+
+  .hello2 button {
+    font-size: 2rem !important;
+    width: 60px !important;
+    height: 60px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .hello2 > div:last-child {
+    padding: 16px !important;
+  }
+
+  .hello2 h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .hello2 p {
+    font-size: 0.9rem !important;
+  }
+
+  .hello2 > div:first-child button {
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.5rem !important;
+  }
+}
+.more-btn {
+  background: none;
+  border: none;
+  color: #e50914;
+  font-weight: 600;
+  font-size: 14px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+/* =========================================
+   NETFLIX-STYLE MOBILE POLISH
+   (SAFE OVERRIDES ONLY)
+========================================= */
+
+/* ---------- SMALL TABLETS & PHONES ---------- */
+@media (max-width: 768px) {
+
+  /* Navbar slim like Netflix */
+  .Navbar {
+    padding: 6px 14px;
+    background-color: rgba(0,0,0,0.85);
+  }
+
+  .Navbar .logo {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+  }
+
+  .Nav-links {
+    display: none; /* Netflix hides links on mobile */
+  }
+
+  .left-bar {
+    gap: 14px;
+  }
+
+  /* Hero banner layout */
+  .container {
+    padding-top: 52px;
+  }
+
+  .banner-card {
+    height: 70vh;
+    border-radius: 0;
+  }
+
+  .banner-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0,0,0,0.95) 20%,
+      rgba(0,0,0,0.6) 55%,
+      rgba(0,0,0,0.15) 75%,
+      rgba(0,0,0,0) 100%
+    );
+  }
+
+  .banner-content {
+    padding: 18px;
+    justify-content: flex-end;
+  }
+
+  .hero-title {
+    font-size: 1.9rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+  }
+
+  .banner-meta {
+    font-size: 0.85rem;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .banner-content .description {
+    font-size: 0.9rem;
+    line-height: 1.45;
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+
+  /* Buttons stacked like Netflix */
+  .banner-content .buttons {
+    display: flex;
+    gap: 10px;
+  }
+
+  .banner-content .buttons button {
+    flex: 1;
+    padding: 10px 0;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  /* Movie rows spacing */
+  .movie-list {
+    padding: 16px 12px 12px 12px;
+    gap: 10px;
+  }
+
+  .movie-card {
+    flex: 0 0 130px;
+  }
+
+  .movie-card img {
+    height: 195px;
+  }
+}
+
+/* ---------- SMALL PHONES (EXACT NETFLIX FEEL) ---------- */
+@media (max-width: 480px) {
+
+  /* Banner full cinematic */
+  .banner-card {
+    height: 75vh;
+  }
+
+  .hero-title {
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  .banner-content .description {
+    font-size: 0.85rem;
+    line-height: 1.4;
+  }
+
+  /* Play button primary */
+  .banner-content .buttons .play {
+    background: #fff;
+    color: #000;
+    font-weight: 600;
+  }
+
+  .banner-content .buttons .information {
+    background: rgba(109, 109, 110, 0.7);
+    border: none;
+  }
+
+  /* Cards smaller & tighter */
+  .movie-card {
+    flex: 0 0 115px;
+  }
+
+  .movie-card img {
+    height: 175px;
+  }
+
+  .movie-card:hover {
+    transform: none; /* Netflix mobile me hover nahi hota */
+  }
+
+  /* Hide hover info on mobile */
+  .movie-info {
+    display: none;
+  }
+}
+
+/* ---------- EXTRA SMALL DEVICES ---------- */
+@media (max-width: 360px) {
+
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .banner-content {
+    padding: 14px;
+  }
+
+  .banner-content .buttons button {
+    font-size: 13px;
+    padding: 9px 0;
+  }
+
+  .movie-card {
+    flex: 0 0 105px;
+  }
+
+  .movie-card img {
+    height: 160px;
+  }
+}
+
+
+
+
+
+
+
+

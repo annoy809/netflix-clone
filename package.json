@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "firebase": "^11.8.1",
+    "firebase-admin": "^13.4.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd website && npm run dev"
+  }
+}

@@ -1,0 +1,39 @@
+.movie-list-section {
+  padding: 20px;
+  background-color: #111;
+  color: #fff;
+}
+
+.section-heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.movie-card {
+  width: 180px;
+  background-color: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #444;
+}
+
+.movie-info {
+  padding: 10px;
+}
+
+.empty-state {
+  color: gray;
+  padding: 20px;
+}
