@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import './SearchModal.css'; // ⬅️ Use this new CSS
+import './SearchModal.css';
 
 const TMDB_API_KEY = '80a440824f9a51de8cc051fe109b6e3c';
 
-export default function SearchModal({ show, setShow, query, setQuery, movies, onSelect }) {
+export default function SearchModal({
+  show,
+  setShow,
+  query,
+  setQuery,
+  movies,
+  onSelect,
+}) {
   const [trending, setTrending] = useState([]);
 
   useEffect(() => {
     const fetchTrending = async () => {
       try {
-        const res = await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${TMDB_API_KEY}`);
+        const res = await fetch(
+          `https://api.themoviedb.org/3/trending/all/day?api_key=${TMDB_API_KEY}`
+        );
         const data = await res.json();
+
         const mapped = data.results.map(item => ({
           id: item.id,
           title: item.title || item.name,
@@ -21,38 +31,54 @@ export default function SearchModal({ show, setShow, query, setQuery, movies, on
             : 'https://via.placeholder.com/80x120?text=No+Image',
           description: item.overview,
         }));
+
         setTrending(mapped);
       } catch (err) {
         console.error('Failed to fetch trending:', err);
       }
     };
+
     fetchTrending();
   }, []);
 
   useEffect(() => {
-  if (show) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
-  }
+    if (show) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
 
-  // Cleanup on unmount
-  return () => {
-    document.body.style.overflow = '';
-  };
-}, [show]);
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [show]);
 
+  /* 🔥 FIXED */
+const handleSelect = (e, movie) => {
+  e.stopPropagation();
 
-  const handleSelect = (e, movie) => {
-    e.stopPropagation();
-    onSelect(movie);
-  };
+  onSelect({
+    ...movie,
+
+    poster_path:
+      movie.poster ||
+      (movie.Poster && movie.Poster !== "N/A"
+        ? movie.Poster.replace("SX300", "")
+        : null),
+  });
+
+  setShow(false);
+};
+
 
   if (!show) return null;
 
   return (
     <div className="search-modal" onClick={() => setShow(false)}>
-      <div className="search-modal-content" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="search-modal-content"
+        onClick={(e) => e.stopPropagation()}
+      >
         <input
           type="text"
           className="search-input"
@@ -82,12 +108,18 @@ export default function SearchModal({ show, setShow, query, setQuery, movies, on
                   }
                 >
                   <img
-                    src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/80x120?text=No+Image'}
+                    src={
+                      movie.Poster !== 'N/A'
+                        ? movie.Poster
+                        : 'https://via.placeholder.com/80x120?text=No+Image'
+                    }
                     alt={movie.Title}
                   />
                   <div className="info">
                     <p className="title">{movie.Title}</p>
-                    <span className="meta">{movie.Year} • {movie.Type === 'series' ? 'Series' : 'Movie'}</span>
+                    <span className="meta">
+                      {movie.Year} • {movie.Type === 'series' ? 'Series' : 'Movie'}
+                    </span>
                   </div>
                 </div>
               ))}

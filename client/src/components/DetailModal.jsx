@@ -19,6 +19,16 @@ const DetailModal = ({ item, onClose, tvId, seasonNumber }) => {
 
   const isTV = item?.media_type === 'tv' || !!item?.first_air_date || Array.isArray(item?.episode_run_time);
 
+  /* ================= POSTER FIX ================= */
+  const posterImage =
+    item.poster_path
+      ? item.poster_path.startsWith('http')
+        ? item.poster_path
+        : `https://image.tmdb.org/t/p/w500${item.poster_path}`
+      : item.poster && item.poster !== 'N/A'
+        ? item.poster
+        : 'https://via.placeholder.com/500x750?text=No+Image';
+
   /* ================= TRAILER ================= */
   useEffect(() => {
     if (!tvId) return;
@@ -128,20 +138,14 @@ const DetailModal = ({ item, onClose, tvId, seasonNumber }) => {
 
   /* ================= MODAL CLOSE HANDLER ================= */
   const handleClose = () => {
-    // Close modal
     onClose?.();
-    // Re-enable body scroll in case it was disabled
     document.body.style.overflow = 'auto';
-    // Scroll to top to avoid stuck scroll
     window.scrollTo(0, 0);
   };
 
-  // Disable scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = 'hidden';
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
+    return () => { document.body.style.overflow = 'auto'; };
   }, []);
 
   return (
@@ -151,7 +155,7 @@ const DetailModal = ({ item, onClose, tvId, seasonNumber }) => {
         {/* Poster */}
         <div className="detail-modal-poster">
           <img
-            src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'https://via.placeholder.com/300x450?text=No+Image'}
+            src={posterImage}
             alt={item.title || item.name}
           />
           <button className="detail-modal-play" onClick={handlePlayClick}>▶</button>
