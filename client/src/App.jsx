@@ -8,8 +8,6 @@ import "./App.css";
 ============================= */
 const Home = lazy(() => import("./pages/Home"));
 const Player = lazy(() => import("./pages/player"));
-const Signup = lazy(() => import("./pages/signup"));
-const Login = lazy(() => import("./pages/login"));
 
 /* =============================
    ✨ Smooth Loader
@@ -43,22 +41,7 @@ const router = createBrowserRouter([
       </Suspense>
     ),
   },
-  {
-    path: "/signup",
-    element: (
-      <Suspense fallback={<SmoothLoader />}>
-        <Signup />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/login",
-    element: (
-      <Suspense fallback={<SmoothLoader />}>
-        <Login />
-      </Suspense>
-    ),
-  },
+
 ]);
 
 export default function App() {

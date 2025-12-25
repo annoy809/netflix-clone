@@ -1,15 +1,14 @@
-// /components/Navbar.jsx
-import React, { useRef, useEffect, useState } from 'react';
-import searchIcon from '../img/search_icon.svg';
-import bellIcon from '../img/bell_icon.svg';
-import defaultDp from '../img/dp.png';
-import NotificationDropdown from './NotificationDropdown';
-import './Navbar.css';
+import React, { useRef, useEffect, useState } from "react";
+import searchIcon from "../img/search_icon.svg";
+import bellIcon from "../img/bell_icon.svg";
+import defaultDp from "../img/dp.png";
+import NotificationDropdown from "./NotificationDropdown";
+import { subscribeToNotifications } from "../firebase";
+import "./Navbar.css";
 
 export default function Navbar({
   currentBanner,
   userProfile,
-  notifications,
   isNotifiVisible,
   setIsNotifiVisible,
   showSearchModal,
@@ -17,24 +16,32 @@ export default function Navbar({
 }) {
   const searchRef = useRef(null);
   const [dpUrl, setDpUrl] = useState(userProfile?.dp || defaultDp);
+  const [notifications, setNotifications] = useState([]);
 
+  // Update profile picture
   useEffect(() => {
     setDpUrl(userProfile?.dp || defaultDp);
   }, [userProfile]);
+
+  // Subscribe to notifications
+  useEffect(() => {
+    const unsubscribe = subscribeToNotifications(setNotifications);
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div
       className="Navbar"
       style={{
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
         right: 0,
         zIndex: 10,
-        minHeight: '60px',
-        '--navbar-bg': currentBanner?.image
+        minHeight: "60px",
+        "--navbar-bg": currentBanner?.image
           ? `url(${currentBanner.image})`
-          : 'none',
+          : "none",
       }}
     >
       <p className="logo">FLIXA</p>
@@ -46,29 +53,30 @@ export default function Navbar({
           alt="Search"
           className="icon"
           onClick={() => setShowSearchModal(true)}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: "pointer" }}
         />
 
-        {/* 🔔 Notifications (UNCHANGED) */}
-        <img
-          src={bellIcon}
-          alt="Notifications"
-          className="icon"
-          onClick={() => setIsNotifiVisible(!isNotifiVisible)}
-          style={{ cursor: 'pointer' }}
-        />
-
-        {isNotifiVisible && (
-          <NotificationDropdown notifications={notifications} />
-        )}
-
-        {/* 👤 Profile image ONLY (no dropdown) */}
-        <div className="child-profile">
+        {/* 🔔 Notifications */}
+        <div style={{ position: "relative" }}>
           <img
-            src={dpUrl}
-            alt="Profile"
-            className="profile-img"
+            src={bellIcon}
+            alt="Notifications"
+            className="icon"
+            onClick={() => setIsNotifiVisible(!isNotifiVisible)}
+            style={{ cursor: "pointer" }}
           />
+          {/* 🔴 Badge */}
+          {notifications.length > 0 && (
+            <span className="notif-badge">{notifications.length}</span>
+          )}
+          {isNotifiVisible && (
+            <NotificationDropdown notifications={notifications} />
+          )}
+        </div>
+
+        {/* 👤 Profile image ONLY */}
+        <div className="child-profile">
+          <img src={dpUrl} alt="Profile" className="profile-img" />
         </div>
       </div>
     </div>

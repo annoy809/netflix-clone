@@ -9,7 +9,6 @@ import "./home.css";
 import { useNavigate } from "react-router-dom";
 
 import useBannerRotation from "../hooks/useBannerRotation";
-import useAuthHandlers from "../hooks/useAuthHandlers";
 import { subscribeToNotifications } from "../firebase";
 
 /* ================================
@@ -49,7 +48,7 @@ const Home = () => {
   const [isNotifiVisible, setIsNotifiVisible] = useState(false);
   const [notifications, setNotifications] = useState([]);
 
-  const userProfile = useAuthHandlers();
+
   const navigate = useNavigate();
 
   /* ================================
@@ -125,7 +124,6 @@ const Home = () => {
         {/* Navbar */}
         <Navbar
           currentBanner={currentBanner}
-          userProfile={userProfile}
           notifications={notifications}
           isNotifiVisible={isNotifiVisible}
           setIsNotifiVisible={setIsNotifiVisible}
