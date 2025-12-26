@@ -3,7 +3,7 @@ import "./player.css";
 
 const SERVERS = [
   /* =====================
-     🌍 INTERNATIONAL
+     🌍 INTERNATIONAL (STABLE)
   ===================== */
 
   {
@@ -31,7 +31,7 @@ const SERVERS = [
   },
 
   {
-    name: "SuperEmbed",
+    name: "MultiEmbed",
     build: ({ tmdbID, s, e }) =>
       s && e
         ? `https://multiembed.mov/?video_id=${tmdbID}&s=${s}&e=${e}`
@@ -55,7 +55,7 @@ const SERVERS = [
   },
 
   /* =====================
-     🇮🇳 HINDI / DUAL AUDIO
+     🇮🇳 HINDI / DUAL AUDIO (PLAYABLE)
   ===================== */
 
   {
@@ -67,39 +67,14 @@ const SERVERS = [
   },
 
   {
-    name: "MoviesAPI Hindi",
-    build: ({ tmdbID, s, e }) =>
-      s && e
-        ? `https://moviesapi.club/tv/${tmdbID}-${s}-${e}`
-        : `https://moviesapi.club/movie/${tmdbID}`,
-  },
-
-  {
-    name: "EmbedHindi",
-    build: ({ tmdbID, s, e }) =>
-      s && e
-        ? `https://embedhindi.com/tv/${tmdbID}/${s}/${e}`
-        : `https://embedhindi.com/movie/${tmdbID}`,
-  },
-
-  /* =====================
-     🧪 BACKUP / EXPERIMENTAL
-  ===================== */
-
-  {
     name: "SmashyStream",
     build: ({ tmdbID, s, e }) =>
       s && e
         ? `https://player.smashystream.com/tv/${tmdbID}?s=${s}&e=${e}`
         : `https://player.smashystream.com/movie/${tmdbID}`,
   },
-
-  {
-    name: "DatabaseGDrive",
-    build: ({ tmdbID }) =>
-      `https://databasegdriveplayer.xyz/player.php?tmdb=${tmdbID}`,
-  },
 ];
+
 
 
 const Player = ({ selectedMovie, onClose }) => {

@@ -1,175 +1,177 @@
-/* DetailModal.css */
-
+/* ================= BACKDROP ================= */
 .detail-modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
   z-index: 1000;
 }
 
+/* ================= CONTAINER ================= */
 .detail-modal-container {
-  background-color: #141414;
-  color: white;
-  width: 90%;
-  max-width: 900px;
-  border-radius: 10px;
+  background: #141414;
+  color: #fff;
+  width: 95%;
+  max-width: 950px;
+  max-height: 90vh;
+  border-radius: 14px;
   display: flex;
   overflow: hidden;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
+/* ================= POSTER ================= */
 .detail-modal-poster {
-  position: relative;
   width: 40%;
-  min-width: 300px;
-  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
 }
 
 .detail-modal-poster img {
   width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 10px 0 0 10px;
+  height: 100%;
   object-fit: cover;
 }
 
+/* Play button */
 .detail-modal-play {
   position: absolute;
-  bottom: 15px;
-  right: 15px;
-  background: rgba(255, 0, 0, 0.8);
-  border: none;
-  color: white;
-  font-size: 30px;
-  padding: 10px 15px;
+  bottom: 16px;
+  right: 16px;
+  width: 56px;
+  height: 56px;
+  font-size: 24px;
   border-radius: 50%;
+  background: #e50914;
+  border: none;
+  color: #fff;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
-.detail-modal-play:hover {
-  background: rgba(255, 0, 0, 1);
-}
-
+/* ================= CONTENT ================= */
 .detail-modal-content {
-  padding: 20px;
   width: 60%;
+  padding: 18px;
   overflow-y: auto;
-  max-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  position: relative;
 }
 
 .detail-modal-close {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
+  top: 12px;
+  right: 14px;
+  font-size: 26px;
+  background: none;
   border: none;
-  font-size: 28px;
-  color: white;
+  color: #fff;
   cursor: pointer;
-  font-weight: bold;
 }
 
+/* ================= TABS ================= */
 .detail-modal-tabs {
   display: flex;
-  margin-top: 20px;
-  border-bottom: 1px solid #444;
+  gap: 22px;
+  margin: 16px 0;
+  border-bottom: 1px solid #333;
 }
 
 .detail-modal-tab {
-  margin-right: 25px;
-  padding-bottom: 10px;
+  padding-bottom: 8px;
   cursor: pointer;
-  color: #bbb;
-  font-weight: 600;
-  text-transform: capitalize;
-  border-bottom: 3px solid transparent;
-  transition: all 0.3s ease;
+  color: #aaa;
+  font-weight: 500;
 }
 
 .detail-modal-tab.active {
-  color: white;
-  border-bottom-color: red;
+  color: #fff;
+  border-bottom: 2px solid #e50914;
 }
 
-.detail-modal-episodes,
-.detail-modal-more,
-.detail-modal-details {
-  margin-top: 15px;
-  overflow-y: auto;
-  max-height: 60vh;
+/* ================= SEASON SELECT ================= */
+.season-selector {
+  margin-bottom: 14px;
+}
+
+.season-selector select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  background: #111;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+/* ================= EPISODES ================= */
+.detail-modal-episodes {
+  display: flex;
+  flex-direction: column;
 }
 
 .detail-modal-episode {
   display: flex;
-  margin-bottom: 15px;
+  gap: 12px;
+  margin-bottom: 14px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  padding: 6px;
   border-radius: 8px;
-  padding: 8px;
+  transition: background 0.2s;
 }
 
 .detail-modal-episode:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .detail-modal-episode img {
-  width: 150px;
-  height: 84px;
-  border-radius: 6px;
+  width: 120px;
+  height: 70px;
   object-fit: cover;
-  margin-right: 15px;
+  border-radius: 6px;
 }
 
+.detail-modal-episode strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.detail-modal-episode p {
+  font-size: 13px;
+  color: #bbb;
+}
+
+/* ================= MORE TAB ================= */
 .detail-modal-more-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
 }
 
 .detail-modal-more-item img {
   width: 100%;
-  border-radius: 6px;
-  object-fit: cover;
+  border-radius: 8px;
 }
 
 .detail-modal-more-item p {
-  margin-top: 5px;
-  font-size: 0.9rem;
+  font-size: 13px;
   text-align: center;
-  color: #ddd;
+  margin-top: 6px;
 }
 
+/* ================= PLAYER ================= */
 .detail-modal-player {
   position: fixed;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  background-color: #000;
-  z-index: 1100;
+  inset: 5%;
+  background: #000;
+  z-index: 1200;
   border-radius: 12px;
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
 }
 
-/* -------- Responsive Styles -------- */
-@media screen and (max-width: 1024px) {
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
   .detail-modal-container {
     flex-direction: column;
-    width: 95%;
+    max-height: 95vh;
   }
 
   .detail-modal-poster,
@@ -177,48 +179,16 @@
     width: 100%;
   }
 
-  .detail-modal-episode img {
-    width: 120px;
-    height: 70px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .detail-modal-container {
-    width: 98%;
+  .detail-modal-poster {
+    height: 260px;
   }
 
   .detail-modal-content {
-    padding: 15px;
+    padding: 14px;
   }
 
   .detail-modal-episode img {
-    width: 100px;
-    height: 56px;
-  }
-
-  .detail-modal-tabs {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .detail-modal-close {
-    font-size: 24px;
-  }
-
-  .detail-modal-play {
-    font-size: 24px;
-    padding: 8px 12px;
-  }
-
-  .detail-modal-episode img {
-    width: 80px;
-    height: 45px;
-  }
-
-  .detail-modal-more-item p {
-    font-size: 0.8rem;
+    width: 90px;
+    height: 52px;
   }
 }
