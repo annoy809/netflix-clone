@@ -15,18 +15,39 @@ export default function Navbar({
   setShowSearchModal,
 }) {
   const searchRef = useRef(null);
+  const profileRef = useRef(null); // ✅ NEW
   const [dpUrl, setDpUrl] = useState(userProfile?.dp || defaultDp);
   const [notifications, setNotifications] = useState([]);
+  const [showProfile, setShowProfile] = useState(false);
 
-  // Update profile picture
   useEffect(() => {
     setDpUrl(userProfile?.dp || defaultDp);
   }, [userProfile]);
 
-  // Subscribe to notifications
   useEffect(() => {
     const unsubscribe = subscribeToNotifications(setNotifications);
     return () => unsubscribe();
+  }, []);
+
+  // ✅ CLOSE DROPDOWN ON SCROLL OR CLICK OUTSIDE
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowProfile(false);
+      }
+    };
+
+    const handleScroll = () => {
+      setShowProfile(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    window.addEventListener("scroll", handleScroll, true); // true for capture phase
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
   }, []);
 
   return (
@@ -53,7 +74,6 @@ export default function Navbar({
           alt="Search"
           className="icon"
           onClick={() => setShowSearchModal(true)}
-          style={{ cursor: "pointer" }}
         />
 
         {/* 🔔 Notifications */}
@@ -63,9 +83,7 @@ export default function Navbar({
             alt="Notifications"
             className="icon"
             onClick={() => setIsNotifiVisible(!isNotifiVisible)}
-            style={{ cursor: "pointer" }}
           />
-          {/* 🔴 Badge */}
           {notifications.length > 0 && (
             <span className="notif-badge">{notifications.length}</span>
           )}
@@ -74,9 +92,51 @@ export default function Navbar({
           )}
         </div>
 
-        {/* 👤 Profile image ONLY */}
-        <div className="child-profile">
-          <img src={dpUrl} alt="Profile" className="profile-img" />
+        {/* 👤 Profile */}
+        <div className="child-profile" style={{ position: "relative" }} ref={profileRef}>
+          <img
+            src={dpUrl}
+            alt="Profile"
+            className="profile-img"
+            onClick={() => setShowProfile(!showProfile)}
+          />
+
+          {/* 🔽 PROFILE DROPDOWN */}
+          {showProfile && (
+            <div className="profile-dropdown">
+              <p className="pd-name">Masoom</p>
+              <p className="pd-role">Full Stack Developer</p>
+
+              <div className="pd-divider" />
+
+              <p>Email: masoomali8076@gmail.com</p>
+              <p>
+                GitHub:{" "}
+                <a
+                  href="https://github.com/annoy809"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="profile-link"
+                >
+                  https://github.com/annoy809
+                </a>
+              </p>
+
+              <div className="pd-divider" />
+
+              <button
+                className="pd-btn"
+                onClick={() =>
+                  window.open(
+                    "https://portfolio-eight-eta-49.vercel.app/",
+                    "_blank"
+                  )
+                }
+              >
+                View Details
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -272,4 +272,119 @@
   border-radius: 50%;
   pointer-events: none;
 }
+/* =========================
+   PROFILE DROPDOWN (ADDED)
+========================= */
+
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 260px;
+  background: rgba(20, 20, 20, 0.98);
+  border-radius: 8px;
+  padding: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  z-index: 999;
+  animation: profileFade 0.2s ease-in-out;
+}
+
+/* Name & role */
+.profile-dropdown .pd-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.profile-dropdown .pd-role {
+  font-size: 12px;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+
+/* Text */
+.profile-dropdown p {
+  font-size: 13px;
+  margin: 5px 0;
+  color: #ddd;
+  word-break: break-word;
+}
+
+/* Divider */
+.profile-dropdown .pd-divider {
+  height: 1px;
+  background: #2a2a2a;
+  margin: 8px 0;
+}
+
+/* Links */
+.profile-dropdown .profile-link {
+  color: #4da3ff;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.profile-dropdown .profile-link:hover {
+  text-decoration: underline;
+}
+
+/* Button */
+.profile-dropdown .pd-btn {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  background: #e50914;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.profile-dropdown .pd-btn:hover {
+  background: #f6121d;
+}
+
+/* Animation */
+@keyframes profileFade {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE (ADDON)
+========================= */
+
+@media (max-width: 768px) {
+  .profile-dropdown {
+    width: 220px;
+    right: -10px;
+  }
+
+  .profile-dropdown p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-dropdown {
+    width: 200px;
+    padding: 12px;
+  }
+
+  .profile-dropdown .pd-name {
+    font-size: 14px;
+  }
+
+  .profile-dropdown .pd-role {
+    font-size: 11px;
+  }
+}
+
 
